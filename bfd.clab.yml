@@ -1,0 +1,29 @@
+name: bfd
+
+mgmt:
+  network: bfd
+  ipv4-subnet: 172.30.0.0/24
+
+topology:
+  
+  kinds:
+    nokia_srlinux:
+      image: ghcr.io/nokia/srlinux:24.7.1
+
+  nodes:
+    srl1:
+      startup-config: configs/srl1.cfg
+      mgmt-ipv4: 172.30.0.10
+      kind: nokia_srlinux  
+
+    srl2:
+      startup-config: configs/srl2.cfg
+      mgmt-ipv4: 172.30.0.20
+      kind: nokia_srlinux  
+
+  links:
+    - endpoints: ["srl1:e1-1", "srl2:e1-1"]
+    - endpoints: ["srl1:e1-2", "srl2:e1-2"]
+    - endpoints: ["srl1:e1-3", "srl2:e1-3"]
+    - endpoints: ["srl1:e1-4", "srl2:e1-4"]
+    - endpoints: ["srl1:e1-5", "srl2:e1-5"]
